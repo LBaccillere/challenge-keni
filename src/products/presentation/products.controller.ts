@@ -117,6 +117,22 @@ export class ProductsController {
     if (!file)
       throw new ApiError(HTTP_ERROR_CODES.BAD_REQUEST, 'Unattached file');
 
+    if (!this.fileService.isValidImage(file)) {
+      throw new ApiError(
+        HTTP_ERROR_CODES.UNPROCESSABLE_ENTITY,
+        'Unsupported file type. Only images are allowed.',
+      );
+    }
+
+    // Validate file size (limit to 10MB)
+    if (file.size > 10 * 1024 * 1024) {
+      // 10 * 1024 * 1024 bytes for 10MB
+      throw new ApiError(
+        HTTP_ERROR_CODES.PAYLOAD_TOO_LARGE,
+        'File size exceeds the limit of 10MB.',
+      );
+    }
+
     const imagePath = `products/${productUUID}/images`;
     const fileName = 'cover';
 

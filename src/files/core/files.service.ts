@@ -46,4 +46,9 @@ export class FilesService {
         `Unattached ${identifier}`,
       );
   }
+
+  isValidImage(file: Express.Multer.File): boolean {
+    const allowedMimeTypes = ['image/jpeg', 'image/png', 'image/gif'];
+    return allowedMimeTypes.includes(file.mimetype);
+  }
 }
