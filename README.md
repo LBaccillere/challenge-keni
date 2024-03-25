@@ -1,73 +1,59 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
-
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+# Node API Challenge
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+This project is a technical challenge that implements a RESTful API using Node.js with the NestJS framework. The API connects to a MongoDB database to manage product and order data and implements JWT for authentication strategy. The goal is to provide a simple yet functional system that enables a new company to manage products and orders.
 
-## Installation
+## Features
 
-```bash
-$ npm install
-```
+- **RESTful API** created with NestJS.
+- Connection to **MongoDB** with `@nestjs/mongoose`.
+- Authentication with **JWT**.
+- CRUD operations for **products** and **orders**.
+- Calculate the total sold price in the last month and the highest amount order.
 
-## Running the app
+## Prerequisites
 
-```bash
-# development
-$ npm run start
+To run this project, you need to have Docker installed on your machine. This will allow you to lift the MongoDB database and the Node API without needing additional configurations in your local environment.
 
-# watch mode
-$ npm run start:dev
+## Installation and Execution
 
-# production mode
-$ npm run start:prod
-```
+1. **Clone the repository:**
 
-## Test
+git clone https://github.com/LBaccillere/challenge-keni.git
+cd challenge-keni
 
-```bash
-# unit tests
-$ npm run test
+2. **Lift the services with Docker Compose:**
 
-# e2e tests
-$ npm run test:e2e
+docker-compose up -d
 
-# test coverage
-$ npm run test:cov
-```
 
-## Support
+This command will build the necessary Docker images (if it's the first time you run it) and lift the containers for MongoDB and the Node API.
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## Testing the API
 
-## Stay in touch
+To explore and test the API endpoints, access:
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+http://localhost:3000/swagger#/
 
-## License
 
-Nest is [MIT licensed](LICENSE).
+Here you will find the API documentation generated with Swagger, which will allow you to easily execute all available operations.
+
+### Steps for Authentication
+
+1. **Register:** Use the registration endpoint to create a new user.
+2. **Login:** Log in with the credentials of the registered user. You will receive an `access_token` in the response.
+3. **Authorize:** Copy the received `access_token` and click the `Authorize` button in the top right corner of the Swagger UI. Paste the token preceded by the word `Bearer` and confirm. Now you can use the other endpoints that require authentication.
+
+## Main Endpoints
+
+- **Create Product:** Allows the creation of a new product.
+- **Request Product:** Gets the information of a specific product.
+- **Create Order:** Creates a new order.
+- **Update Order:** Allows modifying an existing order.
+- **Total Sold:** Calculates the total sold in the last month.
+- **Highest Amount Order:** Gets the order with the highest amount.
+
+---
+
+This README provides a basic guide to get started with the project.
